@@ -2,7 +2,7 @@
 
 const serverConfigures =  {
 
-  serverURL : "http://localhost:8888/app/api/v1"
+  serverURL : "https://angular-todo-app-844.herokuapp.com/app/api/v1"
 
 
 
