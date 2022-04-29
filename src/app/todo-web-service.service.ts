@@ -104,6 +104,7 @@ export class TodoWebServiceService extends PubSub<any | boolean | Error> {
       },
       complete : ()=>{
         this.getTodos(true);
+        window.location.reload();
       },
       error : (err)=>{
         //throw error to the client to update the state
@@ -167,6 +168,7 @@ export class TodoWebServiceService extends PubSub<any | boolean | Error> {
       },
       complete : ()=>{
         this.getTodos(true);
+        window.location.reload();
       },
       error : (err)=>{
         //throw error to the client to update the state

@@ -92,7 +92,7 @@ export class TodoGridListComponent implements OnInit , AfterViewInit {
       
     this.todoListService.addTodos(this.userForm!.value);
     // new bootstrap.Modal(this.input!.nativeElement).dispose();
-    window.location.reload();
+   
 
     // myModal.dispose();
   }
@@ -127,7 +127,7 @@ export class TodoGridListComponent implements OnInit , AfterViewInit {
 
   editTodo(){
       this.todoListService.editTodo(this.userForm?.value , this.currentSelected._id);
-      window.location.reload();
+      
   }
 
 }
