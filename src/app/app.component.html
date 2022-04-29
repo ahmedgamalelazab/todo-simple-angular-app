@@ -1,0 +1,51 @@
+
+<div class="container h-100">
+  <!--navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <h3 *ngIf="!userProfile">Todo App</h3>
+        <div class="row">
+          <div class="col d-flex align-items-center justify-content-center">
+            <img class="avatar" *ngIf="userProfile" [src]="userProfile!.userImage" alt="loading">
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h5 *ngIf="userProfile" >{{userProfile!.userName}}</h5>
+                <h6 *ngIf="userProfile" >{{userProfile!.userEmail}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button (click)="signIn()" *ngIf="isLogged === false" class="btn btn-primary">Sign in</button>
+            <button (click)="signOut()" *ngIf="isLogged !== false" class="btn btn-primary">Sign out</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--nav bar-->
+
+  <div *ngIf="loading" class="spinner-border text-primary centerContent" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <router-outlet></router-outlet>
+
+<!--
+  <div *ngIf="user !== null">you are signed in with google {{user?.getBasicProfile()?.getEmail()}}</div>
+  <div *ngIf="user !== null">you are signed in with google {{user?.getBasicProfile()?.getImageUrl()}}</div>
+  <div *ngIf="user !== null">you are signed in with google {{user?.getBasicProfile()?.getId()}}</div>
+  <div *ngIf="user !== null">you are signed in with google {{user?.getBasicProfile()?.getGivenName()}}</div>
+  <div *ngIf="user !== null">you are signed in with google {{user?.getBasicProfile()?.getFamilyName()}}</div>
+  <div *ngIf="user !== null">you are signed in with google {{user?.getBasicProfile()?.getName()}}</div> -->
+
+
+</div>

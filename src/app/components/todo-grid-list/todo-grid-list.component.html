@@ -1,0 +1,83 @@
+  <div class="list-container">
+    <div class="container">
+      <div class="row g-2">
+        <div  *ngFor="let todo of todoList" class="col-12 col-md-6 col-lg-4">
+          <div class="card shadow" [style.background]="todo?.colorTheme" [style.color]="todo?.colorTheme === 'green' ? 'white' : 'black'">
+            <div class="card-body">
+              <h3 class="card-title">{{todo?.title}}</h3>
+              <p class="card-text">{{todo?.description}}</p>
+              <div class="cart-footer">
+                <div class="row">
+                  <div class="col-9">
+                    <small>{{todo?.createdAt}}</small>
+                  </div>
+                  <div class="col-3">
+                      <div class="row">
+                        <div class="col-6" (click)="deleteTodo(todo)">
+                          <img src="assets/delete.png" alt="delete" width="25px" height="25px">
+                        </div>
+                        <div class="col-6" (click)="showEditMessage(todo)">
+                          <img src="assets/edit.png" alt="delete" width="25px" height="25px">
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="isEmptyData" class="container emptyData">
+
+      <img src="assets/unavailable.png" width="150px" height="150px" alt="unavailable">
+      <h3>Empty Content</h3>
+    </div>
+
+    <div *ngIf="isLoading === true"  class="spinner-border text-primary centerContent" role="status">
+      <span class="sr-only"></span>
+    </div>
+
+    <div class="addButton" (click)="displayMessage()"></div>
+
+</div>
+
+<!-- adding form -->
+<div id="exampleModal" class="modal  fade forget-modal" tabindex="-1" #myname>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 *ngIf="currentMode === 'adding'" class="modal-title">Add Todo</h5>
+        <h5 *ngIf="currentMode === 'editing'" class="modal-title">Edit Todo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form [formGroup]="userForm!">
+         <div class="mb-3">
+           <label for="todoTitle" class="form-label">title</label>
+           <input type="text"  id="todoTitle" class="form-control" placeholder="title" aria-describedby="helpId" formControlName="title">
+           <!-- <small id="helpId" class="text-muted">Help text</small> error messages-->
+         </div>
+         <div class="mb-3">
+           <label for="todoDescription" class="form-label">Description</label>
+           <textarea class="form-control"  id="todoDescription" rows="5"  placeholder="description" formControlName="description"></textarea>
+         </div>
+         <div class="mb-3">
+           <label for="todoColorTheme" class="form-label">colorTheme</label>
+           <input type="text"  id="todoColorTheme" class="form-control" placeholder="colorTheme" aria-describedby="helpId" formControlName="colorTheme">
+           <!-- <small id="helpId" class="text-muted">Help text</small> error messages-->
+         </div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button *ngIf="currentMode === 'adding'" type="add" class="btn btn-primary" (click)="addTodo()">Add</button>
+        <button *ngIf="currentMode === 'editing'" type="add" class="btn btn-primary" (click)="editTodo()">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of adding form -->
+
